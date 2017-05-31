@@ -16,17 +16,22 @@
 package com.fernandocejas.android10.sample.data.cache;
 
 import android.content.Context;
+
 import com.fernandocejas.android10.sample.data.cache.serializer.Serializer;
 import com.fernandocejas.android10.sample.data.entity.UserEntity;
 import com.fernandocejas.android10.sample.data.exception.UserNotFoundException;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
-import io.reactivex.Observable;
+
 import java.io.File;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Observable;
+
 /**
  * {@link UserCache} implementation.
+ *
  */
 @Singleton
 public class UserCacheImpl implements UserCache {
@@ -34,8 +39,8 @@ public class UserCacheImpl implements UserCache {
   private static final String SETTINGS_FILE_NAME = "com.fernandocejas.android10.SETTINGS";
   private static final String SETTINGS_KEY_LAST_CACHE_UPDATE = "last_cache_update";
 
-  private static final String DEFAULT_FILE_NAME = "user_";
-  private static final long EXPIRATION_TIME = 60 * 10 * 1000;
+  private static final String DEFAULT_FILE_NAME = "user_";//默认文件名称
+  private static final long EXPIRATION_TIME = 60 * 10 * 1000;//到期时间
 
   private final Context context;
   private final File cacheDir;
@@ -113,7 +118,7 @@ public class UserCacheImpl implements UserCache {
 
   /**
    * Build a file, used to be inserted in the disk cache.
-   *
+   * 构建一个文件，用于插入磁盘缓存。
    * @param userId The id user to build the file.
    * @return A valid file.
    */
@@ -129,6 +134,7 @@ public class UserCacheImpl implements UserCache {
 
   /**
    * Set in millis, the last time the cache was accessed.
+   * 最高访问速度为毫秒。
    */
   private void setLastCacheUpdateTimeMillis() {
     final long currentMillis = System.currentTimeMillis();
@@ -138,6 +144,7 @@ public class UserCacheImpl implements UserCache {
 
   /**
    * Get in millis, the last time the cache was accessed.
+   * 上次访问高速缓存时达到毫秒。
    */
   private long getLastCacheUpdateTimeMillis() {
     return this.fileManager.getFromPreferences(this.context, SETTINGS_FILE_NAME,
@@ -174,6 +181,7 @@ public class UserCacheImpl implements UserCache {
 
   /**
    * {@link Runnable} class for evicting all the cached files
+   * 驱逐所有缓存文件的类
    */
   private static class CacheEvictor implements Runnable {
     private final FileManager fileManager;

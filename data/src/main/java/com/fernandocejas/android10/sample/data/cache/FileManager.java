@@ -27,6 +27,7 @@ import javax.inject.Singleton;
 
 /**
  * Helper class to do operations on regular files/directories.
+ * Helper类对常规文件/目录进行操作。
  */
 @Singleton
 public class FileManager {
@@ -38,7 +39,8 @@ public class FileManager {
    * Writes a file to Disk.
    * This is an I/O operation and this method executes in the main thread, so it is recommended to
    * perform this operation using another thread.
-   *
+   * *将文件写入磁盘。
+   * *这是一个I / O操作，该方法在主线程中执行，因此建议使用另一个线程执行此操作。
    * @param file The file to write to Disk.
    */
   void writeToFile(File file, String fileContent) {
@@ -57,7 +59,8 @@ public class FileManager {
    * Reads a content from a file.
    * This is an I/O operation and this method executes in the main thread, so it is recommended to
    * perform the operation using another thread.
-   *
+   * *从文件读取内容。
+   * *这是一个I / O操作，该方法在主线程中执行，所以建议*使用另一个线程执行操作。
    * @param file The file to read from.
    * @return A string with the content of the file.
    */
@@ -82,9 +85,10 @@ public class FileManager {
 
   /**
    * Returns a boolean indicating whether this file can be found on the underlying file system.
-   *
+   * 返回一个布尔值，表示是否可以在底层文件系统上找到该文件。
    * @param file The file to check existence.
    * @return true if this file exists, false otherwise.
+   * 如果此文件存在则返回true，否则返回false。
    */
   boolean exists(File file) {
     return file.exists();
@@ -94,8 +98,11 @@ public class FileManager {
    * Warning: Deletes the content of a directory.
    * This is an I/O operation and this method executes in the main thread, so it is recommended to
    * perform the operation using another thread.
+   * *警告：删除目录的内容。
+   * *这是一个I / O操作，该方法在主线程中执行，所以建议*使用另一个线程执行操作。
    *
    * @param directory The directory which its content will be deleted.
+   *                  将删除其内容的目录。
    */
   boolean clearDirectory(File directory) {
     boolean result = false;
